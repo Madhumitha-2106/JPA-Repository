@@ -15,7 +15,6 @@ public class BikeModel {
 	private String name;
 	private int model;
 	
-	
 	public int getId() {
 		return id;
 	}
@@ -34,6 +33,4 @@ public class BikeModel {
 	public void setModel(int model) {
 		this.model = model;
 	}
-	
-
 }
