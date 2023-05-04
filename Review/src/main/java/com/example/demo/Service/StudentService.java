@@ -3,6 +3,9 @@ package com.example.demo.Service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -35,5 +38,20 @@ public class StudentService {
 	public void deleteInfo(int id)
 	{
 		obj.deleteById(id);
+	}
+	//sorting
+	public List<StudentModel> sortDesc(String name)
+	{
+		return obj.findAll(Sort.by(name).descending());
+	}
+	public List<StudentModel> sortAsc(String name)
+	{
+		return obj.findAll(Sort.by(name).ascending());
+	}
+	//pagination
+	public List<StudentModel> paginationData(int pageNum,int pagesize)
+	{
+		Page<StudentModel>p = obj.findAll(PageRequest.of(pageNum, pagesize));
+		return p.getContent();
 	}
 }
