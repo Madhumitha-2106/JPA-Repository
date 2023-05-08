@@ -13,7 +13,6 @@ import jakarta.transaction.Transactional;
 
 public interface StudentRepo extends JpaRepository<StudentModel, Integer> {
 
-	
 	@Query(value="select * from STUDENT", nativeQuery = true)
 	public List<StudentModel> getAllData();
 	
@@ -26,13 +25,15 @@ public interface StudentRepo extends JpaRepository<StudentModel, Integer> {
     @Modifying
     @Transactional
     @Query(value="delete from STUDENT where id=?1 and name=?2",nativeQuery = true)
-    Integer deleteD(@Param("id") int pid,@Param ("name") String pname);
+    Integer deleted(@Param("id") int pid,@Param ("name") String pname);
     
     @Modifying
     @Transactional
     @Query(value="update STUDENT set id=:pid where name=:pname",nativeQuery=true)
     public void updateByQuery(@Param ("pid")int pid,@Param ("pname")String pname);
     
+    
+    //JPQL
     @Query(value="select s from StudentModel s")
     List<StudentModel> jpqlQ();
     

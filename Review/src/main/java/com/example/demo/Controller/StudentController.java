@@ -34,6 +34,7 @@ public class StudentController {
 	public List<StudentModel>getDetails()
 	{
 		return obj2.getInfo();
+		
 	}
 	
 	@PutMapping("/updatedetails")
@@ -55,6 +56,7 @@ public class StudentController {
 		obj2.deleteInfo(id);
 		return "Student Id "+id+" is deleted";
 	}
+	//sorting
 	@GetMapping("/sortDesc/{name}")
 	public List<StudentModel> sortName(@PathVariable("name")String name)
 	{
@@ -71,6 +73,8 @@ public class StudentController {
 	{
 		return obj2.paginationData(pnu, psize);
 	}
+	
+	
 	
 	@Autowired
 	public StudentRepo sr;
@@ -111,7 +115,7 @@ public class StudentController {
 	@DeleteMapping("/del/{id}/{name}")
 	public String delD(@PathVariable ("id") int id,@PathVariable ("name")String name)
 	{
-		sr.deleteD(id, name);
+		sr.deleted(id, name);
 		return "deleted";
 	}
 
